@@ -5,8 +5,8 @@ const NavBar = () => {
     const navOptions=<> 
      <li><Link to='/'>HOME</Link></li>
     <li><Link to='/menu'>MENU</Link></li>
-   
-    <li><a>Item 3</a></li></>
+    <li><Link to='/order'>ORDER</Link></li>
+    </>
     return (
         <>
             <div className="navbar fixed z-10 bg-opacity-30 max-w-screen-xl bg-black text-white">
