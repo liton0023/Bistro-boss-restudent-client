@@ -27,25 +27,45 @@ const SingUp = () => {
                 <label className="label">
                   <span className="label-text">First Name</span>
                 </label>
-                <input type="text" {...register("firstName")} name="FirstName" placeholder="First Name" className="input input-bordered" />
+                <input type="text" {...register("firstName",{ required: true, maxLength: 20 })} name="firstName" placeholder="First Name" className="input input-bordered" />
               </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Last Name</span>
                 </label>
-                <input type="text" {...register("LastName")} name="LastName" placeholder="Last Name" className="input input-bordered" />
+                <input type="text" {...register("LastName", { required: true },{ pattern: /^[A-Za-z]+$/i })} name="LastName" placeholder="Last Name" className="input input-bordered" />
+                {errors.LastName && <span className="text-red-600">Name field is required</span>}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Gender Selection</span>
+                </label>
+                <select {...register("gender")}>
+                  <option value="female">female</option>
+                  <option value="male">male</option>
+                  <option value="other">other</option>
+                </select>
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Age</span>
+                </label>
+                <input type="number" className="input input-bordered" name="age" {...register("age", { required: true, min: 18, max: 99 })} />
+                {errors.age && <span className="text-red-600">Age field is required</span>}
               </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
-                <input type="email" {...register("email")} name="email" placeholder="email" className="input input-bordered" />
+                <input type="email" {...register("email", { required: true })} name="email" placeholder="email" className="input input-bordered" />
+                {errors.email && <span className="text-red-600">Email field is required</span>}
               </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
-                <input type="password" {...register("password")} name="password"  placeholder="password" className="input input-bordered" />
+                <input type="password" {...register("password", { required: true })} name="password"  placeholder="password" className="input input-bordered" />
+                {errors.password && <span className="text-red-600">Password field is required</span>}
               </div>
               <div className="form-control mt-6">
                 <input  className="btn btn-primary" type="submit" value="Sing Up" />
