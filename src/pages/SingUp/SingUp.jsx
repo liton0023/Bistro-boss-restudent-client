@@ -1,19 +1,21 @@
 import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const SingUp = () => {
+    const navigate=useNavigate();
 
     const {
         register,
-        handleSubmit,
+        handleSubmit,reset,
         watch,
         formState: { errors },
       } = useForm();
 
-      const {createUser}=useContext(AuthContext);
+      const {createUser,updateUser}=useContext(AuthContext);
 
       const onSubmit= (data) => {
         console.log(data);
@@ -21,6 +23,20 @@ const SingUp = () => {
         .then(result=>{
             const loggedUser=result.user;
             console.log(loggedUser)
+            updateUser(data.name,data.photo)
+            .then(()=>{
+                  console.log('user profile updated!')
+                  reset();
+                  Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Your work has been saved',
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                  navigate('/');
+            })
+            .catch(error=>console.log(error))
         })
     }
     console.log(watch("example"))
@@ -39,17 +55,17 @@ const SingUp = () => {
             <div className="card-body">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">First Name</span>
+                  <span className="label-text">Name</span>
                 </label>
-                <input type="text" {...register("firstName",{ required: true, maxLength: 20 })} name="firstName" placeholder="First Name" className="input input-bordered" />
-                {errors.firstName && <span className="text-red-600">Name field is required</span>}
+                <input type="text" {...register("name", { required: true },{ pattern: /^[A-Za-z]+$/i })} name="name" placeholder="Name" className="input input-bordered" />
+                {errors.name && <span className="text-red-600">Name field is required</span>}
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Last Name</span>
+                  <span className="label-text">Photo Url</span>
                 </label>
-                <input type="text" {...register("LastName", { required: true },{ pattern: /^[A-Za-z]+$/i })} name="LastName" placeholder="Last Name" className="input input-bordered" />
-                {errors.LastName && <span className="text-red-600">Name field is required</span>}
+                <input type="text" {...register("photo", { required: true },{ pattern: /^[A-Za-z]+$/i })} name="photo" placeholder="Photo Url" className="input input-bordered" />
+                {errors.photo && <span className="text-red-600">Photo Url field is required</span>}
               </div>
               <div className="form-control">
                 <label className="label">

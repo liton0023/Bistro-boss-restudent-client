@@ -17,9 +17,14 @@ const NavBar = () => {
     <li><Link to='/order'>ORDER</Link></li>
    
 
-    {user?
-    <> <button onClick={handleLogOut} className="btn btn-ghost">LOGOUT</button> </>:
-    <> <li><Link to='/login'>LOGIN</Link></li></>}
+    {
+    user?
+    <> 
+     <span>{user?.displayName}</span>
+    <button onClick={handleLogOut} className="btn btn-ghost">LOGOUT</button> </>:
+    <> <li><Link to='/login'>LOGIN</Link></li>
+    </>
+    }
     </>
     return (
         <>
