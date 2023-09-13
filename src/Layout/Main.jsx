@@ -5,7 +5,7 @@ import NavBar from '../pages/shared/Footer/NavBar/NavBar';
 
 const Main = () => {
     const location=useLocation();
-    const loginPage=location.pathname.includes('login');
+    const loginPage=location.pathname.includes('login') || location.pathname.includes('singup');
     return (
         <div>
            { loginPage ||  <NavBar></NavBar>}
