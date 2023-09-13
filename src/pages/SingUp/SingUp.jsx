@@ -1,5 +1,8 @@
+import { useContext } from "react";
+import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const SingUp = () => {
 
@@ -8,13 +11,24 @@ const SingUp = () => {
         handleSubmit,
         watch,
         formState: { errors },
-      } = useForm()
+      } = useForm();
+
+      const {createUser}=useContext(AuthContext);
 
       const onSubmit= (data) => {
-        console.log(data)
+        console.log(data);
+        createUser(data.email, data.password)
+        .then(result=>{
+            const loggedUser=result.user;
+            console.log(loggedUser)
+        })
     }
     console.log(watch("example"))
     return (
+       <>
+       <Helmet>
+            <title>BISTRO BOSS | SINGUP</title>
+          </Helmet>
         <div className="hero min-h-screen bg-base-200">
         <div className="hero-content w-2/3 flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
@@ -28,6 +42,7 @@ const SingUp = () => {
                   <span className="label-text">First Name</span>
                 </label>
                 <input type="text" {...register("firstName",{ required: true, maxLength: 20 })} name="firstName" placeholder="First Name" className="input input-bordered" />
+                {errors.firstName && <span className="text-red-600">Name field is required</span>}
               </div>
               <div className="form-control">
                 <label className="label">
@@ -40,7 +55,7 @@ const SingUp = () => {
                 <label className="label">
                   <span className="label-text">Gender Selection</span>
                 </label>
-                <select {...register("gender")}>
+                <select className="input input-bordered" {...register("gender")}>
                   <option value="female">female</option>
                   <option value="male">male</option>
                   <option value="other">other</option>
@@ -64,8 +79,11 @@ const SingUp = () => {
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
-                <input type="password" {...register("password", { required: true })} name="password"  placeholder="password" className="input input-bordered" />
-                {errors.password && <span className="text-red-600">Password field is required</span>}
+                <input type="password" {...register("password", { required: true,minLength:6,maxLength:20, pattern:/(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}/ })} name="password"  placeholder="password" className="input input-bordered" />
+                {errors.password?.type === "required" && (<p className="text-red-600">Password is required</p> )}
+                {errors.password?.type === "minLength" && (<p className="text-red-600">Password is gather then 6 chackter</p> )}
+                {errors.password?.type === "maxLength" && (<p className="text-red-600">Password is lass then 20 chackter</p> )}
+                {errors.password?.type === "pattern" && (<p className="text-red-600">Password is uppercase one lower case and one spacial chackter</p> )}
               </div>
               <div className="form-control mt-6">
                 <input  className="btn btn-primary" type="submit" value="Sing Up" />
@@ -75,6 +93,7 @@ const SingUp = () => {
           </form>
         </div>
       </div>
+       </>
     );
 };
 

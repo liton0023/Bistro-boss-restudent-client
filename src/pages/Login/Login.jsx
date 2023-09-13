@@ -1,4 +1,5 @@
 import { useContext, useEffect, useRef, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { LoadCanvasTemplate, loadCaptchaEnginge, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../Provider/AuthProvider';
@@ -39,6 +40,10 @@ const Login = () => {
 
     }
     return (
+       <>
+        <Helmet>
+            <title>BISTRO BOSS | LOGIN</title>
+          </Helmet>
         <div className="hero min-h-screen bg-base-200">
         <div className="hero-content w-2/3 flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
@@ -77,6 +82,7 @@ const Login = () => {
           </form>
         </div>
       </div>
+       </>
     );
 };
 
