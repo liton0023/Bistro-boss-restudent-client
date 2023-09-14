@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.menu a.active {
-  color: white;
-}
-.menu {
+.drawer-side ul {
   background-color: #d1a054;
 }
