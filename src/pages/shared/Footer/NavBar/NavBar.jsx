@@ -20,9 +20,9 @@ const NavBar = () => {
     <li><Link to='/order'>ORDER</Link></li>
     <li>
       <Link to='/dashboard/mycart'>
-      <button className="btn">
+      <button className="flex gap-2">
     <FaShoppingCart></FaShoppingCart>
-     <div className="badge badge-secondary">+{cart?.length || 0}</div>
+     <span className="badge badge-secondary">+{cart?.length || 0}</span>
      </button>
       </Link>
     </li>
