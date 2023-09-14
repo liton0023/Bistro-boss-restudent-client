@@ -1,7 +1,9 @@
 import {
   createBrowserRouter
 } from "react-router-dom";
+import DashBoard from "../Layout/DashBoard";
 import Main from "../Layout/Main";
+import MyCart from "../pages/DashBoard/MyCart/MyCart";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
 import Menu from "../pages/Menu/Menu/Menu";
@@ -35,4 +37,14 @@ import SingUp from "../pages/SingUp/SingUp";
         }
       ]
     },
+    {
+      path:'/dashboard',
+      element:<DashBoard></DashBoard>,
+      children:[
+        {
+          path:'mycart',
+          element:<MyCart></MyCart>
+        }
+      ]
+    }
   ]);
