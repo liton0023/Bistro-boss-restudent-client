@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthProvider";
+import SocialLogin from "../shared/SocialLogin/SocialLogin";
 
 const SingUp = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const SingUp = () => {
       // console.log(loggedUser)
       updateUser(data.name, data.photo)
         .then(() => {
-          const saveUser={name: data.name, email: data.email}
+          const saveUser = { name: data.name, email: data.email };
           fetch("http://localhost:5000/users", {
             method: "POST",
             headers: {
@@ -199,12 +200,11 @@ const SingUp = () => {
                 />
               </div>
               <p className="text-center">
-                {" "}
                 <small>
-                  {" "}
-                  <Link to="/login">Already Registred? Go To Log In</Link>{" "}
-                </small>{" "}
+                  <Link to="/login">Already Registred? Go To Log In</Link>
+                </small>
               </p>
+              <SocialLogin></SocialLogin>
             </div>
           </form>
         </div>

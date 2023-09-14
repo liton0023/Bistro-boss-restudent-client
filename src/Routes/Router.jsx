@@ -3,6 +3,7 @@ import {
 } from "react-router-dom";
 import DashBoard from "../Layout/DashBoard";
 import Main from "../Layout/Main";
+import AllUsers from "../pages/DashBoard/AllUsers/AllUsers";
 import MyCart from "../pages/DashBoard/MyCart/MyCart";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
@@ -45,6 +46,10 @@ import PrivateRoute from './PrivateRoute';
         {
           path:'mycart',
           element:<MyCart></MyCart>
+        },
+        {
+          path:'users',
+          element:<AllUsers></AllUsers>
         }
       ]
     }

@@ -1,20 +1,25 @@
 import {
-    FaBahai,
-    FaBars,
-    FaBook,
-    FaCalendarAlt,
-    FaFileContract,
-    FaHome,
-    FaShoppingBag,
-    FaShoppingCart,
-    FaWallet,
+  FaAccusoft,
+  FaBahai,
+  FaBars,
+  FaBook,
+  FaCalendarAlt,
+  FaFileContract,
+  FaHome,
+  FaShoppingBag,
+  FaShoppingCart,
+  FaUser,
+  FaUtensils,
+  FaWallet,
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../Hooks/useCart";
 
 const DashBoard = () => {
+  const [cart] = useCart();
 
-    const [cart]=useCart();
+  // TODO load admin to service side api next
+  const isAdmin = true;
   return (
     <div className="drawer lg:drawer-open ">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -32,37 +37,75 @@ const DashBoard = () => {
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu bg-[D1A054] p-4 w-80 min-h-full bg-base-200 text-base-content uppercase">
           {/* Sidebar content here */}
-          <li>
-            <NavLink to="dashboard/userhome">
-              <FaHome></FaHome>User Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="dashboard/booking">
-              <FaCalendarAlt></FaCalendarAlt>Reservation
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="dashboard/payment">
-              <FaWallet></FaWallet>Payment Histry
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="dashboard/mycart">
-              <FaShoppingCart></FaShoppingCart>My Cart
-              <span className="badge badge-secondary">+{cart.length || 0}</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="dashboard/review">
-              <FaBahai></FaBahai> Add Review
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="dashboard/booking">
-              <FaBook></FaBook> My Booking
-            </NavLink>
-          </li>
+          {isAdmin ? (
+            <>
+              <li>
+                <NavLink to="adminhome">
+                  <FaHome></FaHome>Admin Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="additems">
+                  <FaUtensils></FaUtensils> Add Items
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="manageitem">
+                 <FaAccusoft></FaAccusoft> Manage Item
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="booking">
+                 <FaBook></FaBook> Manage Booking
+                  {/* <span className="badge badge-secondary">
+                    +{cart.length || 0}
+                  </span> */}
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="users">
+                 <FaUser></FaUser> All Users
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <NavLink to="userhome">
+                  <FaHome></FaHome>User Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="booking">
+                  <FaCalendarAlt></FaCalendarAlt>Reservation
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="payment">
+                  <FaWallet></FaWallet>Payment Histry
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="mycart">
+                  <FaShoppingCart></FaShoppingCart>My Cart
+                  <span className="badge badge-secondary">
+                    +{cart.length || 0}
+                  </span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="review">
+                  <FaBahai></FaBahai> Add Review
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="booking">
+                  <FaBook></FaBook> My Booking
+                </NavLink>
+              </li>
+            </>
+          )}
+
           <div className="divider"></div>
           <li>
             <NavLink to="/">

@@ -5,3 +5,10 @@
 .drawer-side ul {
   background-color: #d1a054;
 }
+
+.drawer-side a.active {
+  color: white;
+}
+.drawer-side a {
+  background-color: transparent;
+}

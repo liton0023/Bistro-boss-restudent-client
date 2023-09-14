@@ -2,12 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
-    LoadCanvasTemplate,
-    loadCaptchaEnginge,
-    validateCaptcha,
+  LoadCanvasTemplate,
+  loadCaptchaEnginge,
+  validateCaptcha,
 } from "react-simple-captcha";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthProvider";
+import SocialLogin from "../shared/SocialLogin/SocialLogin";
 
 const Login = () => {
   const [disable, setDisable] = useState(true);
@@ -122,12 +123,11 @@ const Login = () => {
                 />
               </div>
               <p className="text-center">
-                {" "}
                 <small>
-                  {" "}
-                  <Link to="/singup">Now Here? Create An Account</Link>{" "}
-                </small>{" "}
+                  <Link to="/singup">Now Here? Create An Account</Link>
+                </small>
               </p>
+              <SocialLogin></SocialLogin>
             </div>
           </form>
         </div>
