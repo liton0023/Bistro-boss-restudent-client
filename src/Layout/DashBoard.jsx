@@ -22,6 +22,7 @@ const DashBoard = () => {
   // TODO load admin to service side api next
   // const isAdmin = true;
   const [isAdmin]= useAdmin();
+  // console.log(isAdmin)
   return (
     <div className="drawer lg:drawer-open ">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
