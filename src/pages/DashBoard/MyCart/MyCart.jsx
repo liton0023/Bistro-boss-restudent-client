@@ -4,11 +4,13 @@ import Swal from "sweetalert2";
 import useCart from "../../../Hooks/useCart";
 
 const MyCart = () => {
-  const [cart,refetch] = useCart();
-  const total = cart.reduce((sum, item) => item.price + sum, 0);
+  const [cart ,refetch] = useCart();
+  console.log(cart)
+  const totals = cart.reduce((sum, item) => item.price + sum, 0);
+  const total =Math.round(totals);
 
   const handleDelete=(item)=>{
-    console.log(item)
+    // console.log(item)
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -25,7 +27,7 @@ const MyCart = () => {
             })
             .then(res=>res.json())
             .then(data=>{
-                console.log(data)
+                // console.log(data)
                 if(data.deletedCount > 0){
                     refetch();
                     Swal.fire(

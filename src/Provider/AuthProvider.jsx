@@ -19,6 +19,8 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  console.log(user)
+
   const googleProvider = new GoogleAuthProvider();
 
   const createUser = (email, password) => {
@@ -54,18 +56,17 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
       // console.log("current user :", currentUser);
 
-      // jwt token acces
-     if(currentUser){
-      axios.post('http://localhost:5000/jwt',{email: currentUser.email})
-      .then(data=>{
-        // console.log(data.data.token);
-        localStorage.setItem('access-token',data.data.token)
-      })
-     }
-     else{
-      localStorage.removeItem('access-token');
-     }
-
+      if(currentUser){
+        axios.post('http://localhost:5000/jwt', {email: currentUser.email})
+        .then(data =>{
+            // console.log(data.data.token)
+            localStorage.setItem('access-token', data.data.token)
+            setLoading(false);
+        })
+    }
+    else{
+        localStorage.removeItem('access-token')
+    }
     });
     return () => {
       return unsubscribe;
