@@ -9,6 +9,8 @@
 .drawer-side a.active {
   color: white;
 }
-.drawer-side a {
+.menu li > *:not(ul):not(.menu-title):not(details):active,
+.menu li > *:not(ul):not(.menu-title):not(details).active,
+.menu li > details > summary:active {
   background-color: transparent;
 }
