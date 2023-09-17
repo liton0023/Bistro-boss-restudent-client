@@ -5,7 +5,10 @@ import SectionTittle from "../../../components/SectionTittle/SectionTittle";
 const AddItem = () => {
   const { register, handleSubmit, reset } = useForm();
 
-  const onSubmit = (data) => {};
+  const onSubmit = (data) => {
+    console.log(data)
+    
+  };
   return (
     <div className="w-full">
       <SectionTittle
