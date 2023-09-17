@@ -5,6 +5,7 @@ import DashBoard from "../Layout/DashBoard";
 import Main from "../Layout/Main";
 import AddItem from "../pages/DashBoard/AddItem/AddItem";
 import AllUsers from "../pages/DashBoard/AllUsers/AllUsers";
+import ManageItems from "../pages/DashBoard/ManageItems/ManageItems";
 import MyCart from "../pages/DashBoard/MyCart/MyCart";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
@@ -55,6 +56,10 @@ import PrivateRoute from './PrivateRoute';
         },{
           path:'addItem',
           element:<AdminRoute><AddItem></AddItem></AdminRoute>
+        },
+        {
+          path:'manageitem',
+          element:<AdminRoute> <ManageItems></ManageItems> </AdminRoute>
         }
       ]
     }
