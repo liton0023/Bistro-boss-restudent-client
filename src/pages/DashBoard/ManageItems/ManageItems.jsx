@@ -38,12 +38,12 @@ const ManageItems = () => {
     }
 
     return (
-        <div className="w-full">
+        <div className="w-full p-4">
           <SectionTittle subHeading={'Harry upp'} heading={'Manage All Items'}></SectionTittle>
-          <div className="overflow-x-auto w-full">
+          <div className="overflow-x-auto w-full rounded-t-lg mt-4">
                 <table className="table w-full">
                     {/* head */}
-                    <thead>
+                    <thead className="uppercase h-[60px] text-white bg-[#D1A054]">
                         <tr>
                             <th>#</th>
                             <th>Item</th>
