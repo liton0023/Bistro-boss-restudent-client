@@ -48,7 +48,7 @@ const DashBoard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="additems">
+                <NavLink to="addItem">
                   <FaUtensils></FaUtensils> Add Items
                 </NavLink>
               </li>
@@ -60,9 +60,6 @@ const DashBoard = () => {
               <li>
                 <NavLink to="booking">
                  <FaBook></FaBook> Manage Booking
-                  {/* <span className="badge badge-secondary">
-                    +{cart.length || 0}
-                  </span> */}
                 </NavLink>
               </li>
               <li>

@@ -3,6 +3,7 @@ import {
 } from "react-router-dom";
 import DashBoard from "../Layout/DashBoard";
 import Main from "../Layout/Main";
+import AddItem from "../pages/DashBoard/AddItem/AddItem";
 import AllUsers from "../pages/DashBoard/AllUsers/AllUsers";
 import MyCart from "../pages/DashBoard/MyCart/MyCart";
 import Home from "../pages/Home/Home/Home";
@@ -10,6 +11,7 @@ import Login from "../pages/Login/Login";
 import Menu from "../pages/Menu/Menu/Menu";
 import Order from "../pages/Order/Order/Order";
 import SingUp from "../pages/SingUp/SingUp";
+import AdminRoute from "./AdminRoute";
 import PrivateRoute from './PrivateRoute';
 
  export const router = createBrowserRouter([
@@ -49,7 +51,10 @@ import PrivateRoute from './PrivateRoute';
         },
         {
           path:'users',
-          element:<AllUsers></AllUsers>
+          element:<AdminRoute><AllUsers></AllUsers></AdminRoute>
+        },{
+          path:'addItem',
+          element:<AdminRoute><AddItem></AddItem></AdminRoute>
         }
       ]
     }
