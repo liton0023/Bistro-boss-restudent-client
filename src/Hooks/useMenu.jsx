@@ -8,6 +8,7 @@ const useMenu = () => {
             return res.json()
         }
     })
+    // console.log(menu)
     return [menu, loading, refetch]
 };
 
