@@ -8,6 +8,7 @@ import OrderTab from "../OrderTab";
 
 const Order = () => {
   const [tabIndex, setTabIndex] = useState(0);
+  // console.log(tabIndex)
   const [menu] = useMenu();
   const offered = menu.filter((item) => item.category === "offered");
   const soup = menu.filter((item) => item.category === "soup");

@@ -6,13 +6,10 @@ import useMenu from "../../../Hooks/useMenu";
 import SectionTittle from "../../../components/SectionTittle/SectionTittle";
 
 const ManageItems = () => {
-  const [menu, loading, refetch] = useMenu();
+  const [menu,loading, refetch] = useMenu();
   const [axiosSecure] = useAxiosSecure();
 
-  const handleUpdate =()=>{
-    console.log('click')
-  }
-  const handleDelete = (item) => {
+   const handleUpdate = (item) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -20,19 +17,45 @@ const ManageItems = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes, update it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.delete(`/menu/${item._id}`).then((res) => {
-        //   console.log(res.data);
-          if (res.data.deletedCount > 0) {
-            refetch();
-            Swal.fire("Deleted!", "Your file has been deleted.", "success");
-          }
-        });
+        refetch();
+       console.log('done')
       }
     });
   };
+
+  
+  const handleDelete = item => {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            axiosSecure.delete(`/menu/${item._id}`)
+                .then(res => {
+                    console.log('deleted res', res.data);
+                    if (res.data.deletedCount >= 0) {
+                        refetch();
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    }
+                })
+
+        }
+    })
+}
+
 
 
   return (
@@ -77,13 +100,11 @@ const ManageItems = () => {
                 <td>{item.category}</td>
                 <td className="text-right">${item.price}</td>
                 <td>
-                  <Link to="/dashboard/updateitem">
-                    {" "}
-                    <button onClick={()=> handleUpdate(item)} className="btn btn-ghost bg-orange-600  text-white btn-xs">
+                  <Link to={`/dashboard/updateitem/${item?._id}`}>  {" "}
+                    <button onClick={handleUpdate} className="btn btn-ghost bg-orange-600  text-white btn-xs">
                       {" "}
                       <FaEdit></FaEdit>{" "}
-                    </button>
-                  </Link>
+                    </button></Link>
                 </td>
                 <td>
                   <button

@@ -1,29 +1,37 @@
-import { data } from "autoprefixer";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useMenu from "../../../Hooks/useMenu";
 import SectionTittle from "../../../components/SectionTittle/SectionTittle";
 
-const UpdateItem = ({item}) => {
-    console.log(item)
-    const[menu,loading, refetch] =useMenu();
+const UpdateItem = () => {
+  const { id } = useParams();
+  console.log(id);
   const { register, handleSubmit, reset } = useForm();
   const [axiosSecure] = useAxiosSecure();
+  const [menu, loading, refetch] = useMenu();
+  const [update, setUpdate] = useState();
+  const navigate = useNavigate();
+
+  const item = menu.find((item) => item._id === id);
+  console.log(item._id);
+
   const onSubmit = (data) => {
-    console.log('click', data)
     const { name, price, category, recipe } = data;
+    console.log(name, data);
     const updateItem = {
-      name,
+      _id: id,
+      name: name,
       price: parseFloat(price),
-      category,
-      recipe,
+      category: category,
+      recipe: recipe,
+      image: item.image,
     };
-    axiosSecure.put(`/menu/${item._id}`, updateItem)
-    .then((res) => {
-      console.log(res);
-      if (res.data.updated) {
-        reset();
+    axiosSecure.put(`/menu/${item._id}`, updateItem).then((res) => {
+      console.log("update", res.data);
+      if (res.data.modifiedCount >= 0) {
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -31,9 +39,11 @@ const UpdateItem = ({item}) => {
           showConfirmButton: false,
           timer: 1500,
         });
+        reset();
+        navigate("/dashboard/manageitem");
+        refetch();
       }
     });
-  
   };
   return (
     <div className="w-full text-center">
@@ -58,6 +68,7 @@ const UpdateItem = ({item}) => {
             <label className="label">
               <span className="label-text font-semibold">Category*</span>
             </label>
+
             <select
               {...register("category", { required: true })}
               className="select select-bordered"
@@ -92,8 +103,11 @@ const UpdateItem = ({item}) => {
           ></textarea>
         </div>
         <div className=" my-8">
-            {/* <input type="submit" className="btn w-2/3 bg-[#D1A054]" value="UPDATE ITEM" /> */}
-          <button  className="btn w-2/3 bg-[#D1A054]" onClick={()=> onSubmit(data)} >UPDATE ITEM</button>
+          <input
+            type="submit"
+            className="btn w-2/3 bg-[#D1A054]"
+            value="UPDATE ITEM"
+          />
         </div>
       </form>
     </div>

@@ -4,9 +4,9 @@ import Main from "../Layout/Main";
 import AddItem from "../pages/DashBoard/AddItem/AddItem";
 import AllUsers from "../pages/DashBoard/AllUsers/AllUsers";
 import ManageItems from "../pages/DashBoard/ManageItems/ManageItems";
+import UpdateItem from "../pages/DashBoard/ManageItems/UpdateItem";
 import MyCart from "../pages/DashBoard/MyCart/MyCart";
 import Payment from "../pages/DashBoard/Payment/Payment";
-import UpdateItem from "../pages/DashBoard/UpdateItem/UpdateItem";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
 import Menu from "../pages/Menu/Menu/Menu";
@@ -88,7 +88,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path:'/dashboard/updateitem',
+        path:'/dashboard/updateitem/:id',
         element:<AdminRoute> <UpdateItem></UpdateItem> </AdminRoute>
       }
     ],
