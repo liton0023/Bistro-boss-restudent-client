@@ -29,9 +29,10 @@ const UpdateItem = () => {
       recipe: recipe,
       image: item.image,
     };
-    axiosSecure.put(`/menu/${item._id}`, updateItem).then((res) => {
-      console.log("update", res.data);
-      if (res.data.modifiedCount >= 0) {
+    axiosSecure.put(`/menu/${item?._id}`, updateItem)
+    .then((res) => {
+      console.log("update", res);
+      if (res.data?.modifiedCount > 0) {   
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -42,6 +43,7 @@ const UpdateItem = () => {
         reset();
         navigate("/dashboard/manageitem");
         refetch();
+       
       }
     });
   };

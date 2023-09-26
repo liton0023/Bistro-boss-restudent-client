@@ -1,5 +1,5 @@
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useMenu from "../../../Hooks/useMenu";
@@ -8,6 +8,7 @@ import SectionTittle from "../../../components/SectionTittle/SectionTittle";
 const ManageItems = () => {
   const [menu,loading, refetch] = useMenu();
   const [axiosSecure] = useAxiosSecure();
+  const navigate =useNavigate()
 
    const handleUpdate = (item) => {
     Swal.fire({
@@ -22,6 +23,9 @@ const ManageItems = () => {
       if (result.isConfirmed) {
         refetch();
        console.log('done')
+      }
+      else{
+        navigate("/dashboard/manageitem");
       }
     });
   };
