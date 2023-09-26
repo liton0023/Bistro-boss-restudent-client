@@ -1,7 +1,7 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useContext, useEffect, useState } from "react";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../../Provider/AuthProvider";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import './CheckoutForm.css';
 
 
@@ -19,7 +19,7 @@ const CheckoutForm = ({ cart, price }) => {
         if (price > 0) {
             axiosSecure.post('/create-payment-intent', { price })
                 .then(res => {
-                    console.log(res.data.clientSecret)
+                    // console.log(res.data.clientSecret)
                     setClientSecret(res.data.clientSecret);
                 })
         }
@@ -71,7 +71,7 @@ const CheckoutForm = ({ cart, price }) => {
             console.log(confirmError);
         }
 
-        console.log('payment intent', paymentIntent)
+        // console.log('payment intent', paymentIntent)
         setProcessing(false)
         if (paymentIntent.status === 'succeeded') {
             setTransactionId(paymentIntent.id);
@@ -86,7 +86,9 @@ const CheckoutForm = ({ cart, price }) => {
                 menuItems: cart.map(item => item.menuItemId),
                 status: 'service pending',
                 itemNames: cart.map(item => item.name)
+            
             }
+            // console.log(cart)
             axiosSecure.post('/payments', payment)
                 .then(res => {
                     console.log(res.data);
