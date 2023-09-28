@@ -47,12 +47,12 @@ const ManageItems = () => {
                 .then(res => {
                     console.log('deleted res', res.data);
                     if (res.data.deletedCount >= 0) {
-                        refetch();
                         Swal.fire(
                             'Deleted!',
                             'Your file has been deleted.',
                             'success'
                         )
+                        refetch();
                     }
                 })
 
