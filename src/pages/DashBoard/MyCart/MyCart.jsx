@@ -6,7 +6,7 @@ import useCart from "../../../Hooks/useCart";
 
 const MyCart = () => {
   const [cart ,refetch] = useCart();
-  console.log(cart)
+  // console.log(cart)
   const totals = cart.reduce((sum, item) => item.price + sum, 0);
   const total =Math.round(totals);
 
@@ -22,7 +22,7 @@ const MyCart = () => {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
-            fetch(`https://bistro-boss-server-d7untuw93-md-liton-mahmuds-projects.vercel.app/carts/${item._id}`,
+            fetch(`http://localhost:5000/carts/${item._id}`,
             {
                 method:'DELETE'
             })

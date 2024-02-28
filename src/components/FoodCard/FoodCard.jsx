@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useCart from "../../Hooks/useCart";
@@ -15,7 +15,7 @@ const FoodCard = ({ item }) => {
     console.log(item);
     if (user && user.email) {
       const orderItem = { menuItemId: _id,name : name , image, price, email: user.email };
-      fetch("https://bistro-boss-server-d7untuw93-md-liton-mahmuds-projects.vercel.app/carts", {
+      fetch("http://localhost:5000/carts", {
         method: "POST",
         headers: {
           "content-type": "application/json",

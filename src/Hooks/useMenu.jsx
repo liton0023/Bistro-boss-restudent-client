@@ -2,9 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 
 const useMenu = () => {
     const {data: menu=[], isLoading: loading , refetch}=useQuery({
-        queryKey: 'menu',
+        queryKey: ['menu'],
         queryFn: async()=>{
-            const res = await fetch('https://bistro-boss-server-d7untuw93-md-liton-mahmuds-projects.vercel.app/menu');
+            const res = await fetch('http://localhost:5000/menu');
             return res.json()
         }
     })

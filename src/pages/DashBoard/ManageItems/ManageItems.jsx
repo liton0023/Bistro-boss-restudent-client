@@ -21,6 +21,19 @@ const ManageItems = () => {
       confirmButtonText: "Yes, update it!",
     }).then((result) => {
       if (result.isConfirmed) {
+        
+        axiosSecure.delete(`/menu/${item._id}`)
+        .then(res => {
+            console.log('deleted res', res.data);
+            if (res.data.deletedCount > 0) {
+                Swal.fire(
+                    'Updated!',
+                    'Your file has been updated.',
+                    'success'
+                )
+                refetch();
+            }
+        })
         refetch();
        console.log('done')
       }
@@ -31,7 +44,8 @@ const ManageItems = () => {
   };
 
   
-  const handleDelete = item => {
+  const handleDelete =( item )=> {
+    console.log(item)
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -41,12 +55,12 @@ const ManageItems = () => {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
+      console.log(result)
         if (result.isConfirmed) {
-
-            axiosSecure.delete(`/menu/${item._id}`)
+            axiosSecure.delete(`menu/${item._id}`)
                 .then(res => {
-                    console.log('deleted res', res.data);
-                    if (res.data.deletedCount >= 0) {
+                    console.log('deleted res', res);
+                    if (res.data.deletedCount > 0) {
                         Swal.fire(
                             'Deleted!',
                             'Your file has been deleted.',
@@ -105,7 +119,7 @@ const ManageItems = () => {
                 <td className="text-right">${item.price}</td>
                 <td>
                   <Link to={`/dashboard/updateitem/${item?._id}`}>  {" "}
-                    <button onClick={handleUpdate} className="btn btn-ghost bg-orange-600  text-white btn-xs">
+                    <button onClick={()=>handleUpdate(item)} className="btn btn-ghost bg-orange-600  text-white btn-xs">
                       {" "}
                       <FaEdit></FaEdit>{" "}
                     </button></Link>

@@ -27,7 +27,7 @@ const SingUp = () => {
       updateUser(data.name, data.photo)
         .then(() => {
           const saveUser = { name: data.name, email: data.email };
-          fetch("https://bistro-boss-server-d7untuw93-md-liton-mahmuds-projects.vercel.app/users", {
+          fetch("http://localhost:5000/users", {
             method: "POST",
             headers: {
               "content-type": "application/json",

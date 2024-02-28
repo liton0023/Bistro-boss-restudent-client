@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const axiosSecure = axios.create({
-  baseURL: "https://bistro-boss-server-d7untuw93-md-liton-mahmuds-projects.vercel.app",
+  baseURL: "http://localhost:5000/",
 });
 
 const useAxiosSecure = () => {
@@ -14,6 +14,7 @@ const useAxiosSecure = () => {
   useEffect(() => {
     axiosSecure.interceptors.request.use((config) => {
       const token = localStorage.getItem("access-token");
+      // console.log(token)
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }

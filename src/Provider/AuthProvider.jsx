@@ -1,13 +1,13 @@
 import axios from "axios";
 import {
-    GoogleAuthProvider,
-    createUserWithEmailAndPassword,
-    getAuth,
-    onAuthStateChanged,
-    signInWithEmailAndPassword,
-    signInWithPopup,
-    signOut,
-    updateProfile,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { app } from "../firebase/firebase.config";
@@ -19,7 +19,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  console.log(user)
+  // console.log(user)
 
   const googleProvider = new GoogleAuthProvider();
 
@@ -57,7 +57,7 @@ const AuthProvider = ({ children }) => {
       // console.log("current user :", currentUser);
 
       if(currentUser){
-        axios.post('https://bistro-boss-server-d7untuw93-md-liton-mahmuds-projects.vercel.app/jwt', {email: currentUser.email})
+        axios.post('http://localhost:5000/jwt', {email: currentUser.email})
         .then(data =>{
             localStorage.setItem('access-token', data.data.token)
             setLoading(false);
