@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import img from '../../../assets/home/featured.jpg';
 import SectionTittle from '../../../components/SectionTittle/SectionTittle';
 import '../Featured/featured.css';

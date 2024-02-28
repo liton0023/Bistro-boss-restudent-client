@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Cover from '../../shared/Cover/Cover';
 import MenuItems from '../../shared/MenuItems/MenuItems';
 

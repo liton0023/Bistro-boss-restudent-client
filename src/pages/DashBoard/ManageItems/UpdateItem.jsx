@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -11,12 +10,11 @@ const UpdateItem = () => {
   console.log(id);
   const { register, handleSubmit, reset } = useForm();
   const [axiosSecure] = useAxiosSecure();
-  const [menu, loading, refetch] = useMenu();
-  const [update, setUpdate] = useState();
+  const [menu, , refetch] = useMenu();
   const navigate = useNavigate();
 
   const item = menu.find((item) => item._id === id);
-  console.log(item._id);
+  // console.log(item._id);
 
   const onSubmit = (data) => {
     const { name, price, category, recipe } = data;

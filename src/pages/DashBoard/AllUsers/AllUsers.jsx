@@ -12,7 +12,7 @@ const AllUsers = () => {
   });
 
   const handleMakeAdmin=(user)=>{
-    fetch(`http://localhost:5000/users/admin/${user._id}`,{
+    fetch(`https://bistro-boss-server-esuh.onrender.com/users/admin/${user._id}`,{
         method:'PATCH'
     })
     .then(res=>res.json())
@@ -30,7 +30,7 @@ const AllUsers = () => {
     })
   }
 
-  const handleDelete = (user) => {
+  const handleDelete = () => {
     // TODO
   };
   return (

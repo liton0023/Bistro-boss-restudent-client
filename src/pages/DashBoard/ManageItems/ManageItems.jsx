@@ -6,7 +6,7 @@ import useMenu from "../../../Hooks/useMenu";
 import SectionTittle from "../../../components/SectionTittle/SectionTittle";
 
 const ManageItems = () => {
-  const [menu,loading, refetch] = useMenu();
+  const [menu,, refetch] = useMenu();
   const [axiosSecure] = useAxiosSecure();
   const navigate =useNavigate()
 
@@ -22,7 +22,7 @@ const ManageItems = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         
-        axiosSecure.delete(`/menu/${item._id}`)
+        axiosSecure.delete(`menu/${item._id}`)
         .then(res => {
             console.log('deleted res', res.data);
             if (res.data.deletedCount > 0) {

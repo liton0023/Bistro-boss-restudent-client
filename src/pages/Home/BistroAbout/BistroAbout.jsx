@@ -1,4 +1,4 @@
-import React from 'react';
+
 import img from '../../../assets/shop/banner2.jpg';
 const BistroAbout = () => {
     return (

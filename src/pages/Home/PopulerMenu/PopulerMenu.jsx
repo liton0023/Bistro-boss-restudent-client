@@ -1,4 +1,4 @@
-import React from 'react';
+
 import useMenu from '../../../Hooks/useMenu';
 import SectionTittle from '../../../components/SectionTittle/SectionTittle';
 import MenuItems from '../../shared/MenuItems/MenuItems';
@@ -6,13 +6,6 @@ import MenuItems from '../../shared/MenuItems/MenuItems';
 const PopulerMenu = () => {
     const[menu]=useMenu();
     const populer=menu.filter(item=>item.category==='popular');
-    // const [menu, setMenu]=useState([]);
-      
-    // useEffect(()=>{
-    //     fetch('menu.json')
-    //     .then(res=>res.json())
-    //     .then(data=>setMenu(data.filter(item=>item.category==='popular')))
-    // },[])
     return (
         <section className='mb-12 w-9/12 mx-auto'>
             <SectionTittle heading={'From Our Menu'} subHeading={'Populer Items'}></SectionTittle>

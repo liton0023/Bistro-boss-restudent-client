@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Helmet } from 'react-helmet-async';
 import BistroAbout from '../BistroAbout/BistroAbout';
 import Catagory from '../Catagory/Catagory';

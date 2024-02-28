@@ -15,7 +15,7 @@ const SocialLogin = () => {
       const logedUser = result.user;
       console.log(logedUser);
       const saveUser = { name: logedUser.displayName, email: logedUser.email };
-      fetch("http://localhost:5000/users", {
+      fetch("https://bistro-boss-server-esuh.onrender.com/users", {
         method: "POST",
         headers: {
           "content-type": "application/json",
