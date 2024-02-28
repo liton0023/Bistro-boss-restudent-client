@@ -12,6 +12,7 @@ const AddItem = () => {
   const img_hostion_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
 
   const onSubmit = (data) => {
+    console.log(data)
     const formData = new FormData();
     formData.append("image", data.image[0]);
     fetch(img_hostion_url, {
@@ -20,7 +21,7 @@ const AddItem = () => {
     })
       .then((res) => res.json())
       .then((resImg) => {
-        // console.log(resImg);
+        console.log(resImg);
         if (resImg.success) {
           const img_url = resImg.data.display_url;
           const { name, price, category, recipe } = data;
@@ -31,9 +32,9 @@ const AddItem = () => {
             recipe,
             image: img_url,
           };
-          // console.log(newItem);
+          console.log(newItem);
 
-          axiosSecure.post("/menu", newItem).then((data) => {
+          axiosSecure.post("menu", newItem).then((data) => {
             console.log(data.data);
             if (data.data.insertedId) {
               reset();
